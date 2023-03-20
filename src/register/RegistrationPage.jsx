@@ -44,7 +44,7 @@ import {
   windowScrollTo,
 } from '../data/utils';
 import {
-  COUNTRY_CODE_KEY, COUNTRY_DISPLAY_KEY, FORM_SUBMISSION_ERROR,
+  COUNTRY_CODE_KEY, COUNTRY_DISPLAY_KEY, FORM_SUBMISSION_ERROR,LOGIN_PAGE
 } from './data/constants';
 import { registrationErrorSelector, validationsSelector } from './data/selectors';
 import { getSuggestionForInvalidEmail, validateCountryField, validateEmailAddress } from './data/utils';
@@ -465,6 +465,13 @@ const RegistrationPage = (props) => {
     props.registerNewUser(payload);
   };
 
+  
+ 
+  const handleLoginAccount = () => {
+    sendTrackEvent('edx.bi.login-account.toggled', { category: 'user-engagement' });
+  }
+
+
   const renderForm = () => {
     if (institutionLogin) {
       return (
@@ -590,12 +597,22 @@ const RegistrationPage = (props) => {
             />
             <div className="reg_link" style={{display:"flex",flexDirection:"row",alignItems:"baseline"}}>
               <p style={{fontSize:"13px",fontWeight:"bolder"}}>Already have an Account ? </p>
-              <Link
-                  
+              
+
+
+                <Link
+                  id="login_page"
+                  name="login_page"
+                  to={updatePathWithQueryParams(LOGIN_PAGE)}
+                  onClick={this.handleLoginAccount}
                   style={{color:"dodgerblue",fontWeight:"bolder",marginLeft:"5px"}}
                 >
-                  Sign In
+                  Register
                 </Link>
+
+
+
+                
             </div>
             <div>
                 <input className="inp-cbx" id="cbx" type="checkbox" style={{display:"none"}} />

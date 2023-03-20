@@ -21,7 +21,7 @@ import { getThirdPartyAuthContext } from '../common-components/data/actions';
 import { thirdPartyAuthContextSelector } from '../common-components/data/selectors';
 import EnterpriseSSO from '../common-components/EnterpriseSSO';
 import {
-  DEFAULT_STATE, ENTERPRISE_LOGIN_URL, PENDING_STATE, RESET_PAGE,
+  DEFAULT_STATE, ENTERPRISE_LOGIN_URL, PENDING_STATE, RESET_PAGE,REGISTER_PAGE
 } from '../data/constants';
 import {
   getActivationStatus,
@@ -41,6 +41,7 @@ import { INVALID_FORM } from './data/constants';
 import { loginErrorSelector, loginFormDataSelector, loginRequestSelector } from './data/selectors';
 import LoginFailureMessage from './LoginFailure';
 import messages from './messages';
+
 
 class LoginPage extends React.Component {
   constructor(props, context) {
@@ -142,6 +143,10 @@ class LoginPage extends React.Component {
   handleForgotPasswordLinkClickEvent = () => {
     sendTrackEvent('edx.bi.password-reset_form.toggled', { category: 'user-engagement' });
   };
+
+  handleRegisterAccount = () => {
+    sendTrackEvent('edx.bi.register-account.toggled', { category: 'user-engagment'})
+  }
 
   validateEmail(email) {
     const { errors } = this.state;
@@ -247,6 +252,7 @@ class LoginPage extends React.Component {
           redirectUrl={this.props.loginResult.redirectUrl}
           finishAuthUrl={thirdPartyAuthContext.finishAuthUrl}
         />
+
         <div className="mw-xs mt-3">
         <Hyperlink destination={getConfig().MARKETING_SITE_BASE_URL}>
           <Image className="logos " alt={getConfig().SITE_NAME} src="https://mycloud.skillassure.com/static/images/logo.64c768235db0.png" style={{height:"50px",width:"200px"}}/>
@@ -257,10 +263,14 @@ class LoginPage extends React.Component {
             currentProvider={thirdPartyAuthContext.currentProvider}
             platformName={thirdPartyAuthContext.platformName}
           />
+
+          
           {this.props.loginError ? <LoginFailureMessage loginError={this.props.loginError} /> : null}
           {submitState === DEFAULT_STATE && this.state.isSubmitted ? windowScrollTo({ left: 0, top: 0, behavior: 'smooth' }) : null}
           {activationMsgType && <AccountActivationMessage messageType={activationMsgType} />}
           {this.props.resetPassword && !this.props.loginError ? <ResetPasswordSuccess /> : null}
+
+
           <Form name="sign-in-form" id="sign-in-form">
             <h5>Email ID</h5>
             <FormGroup
@@ -285,6 +295,7 @@ class LoginPage extends React.Component {
               errorMessage={this.state.errors.password}
               floatingLabel={intl.formatMessage(messages['login.password.label'])}
             />
+
             <StatefulButton
               name="sign-in"
               id="sign-in"
@@ -329,10 +340,10 @@ class LoginPage extends React.Component {
             <div className="reg_link" style={{display:"flex",flexDirection:"row",alignItems:"baseline"}}>
               <p style={{fontSize:"13px",fontWeight:"bolder"}}>Didn't have an account ? </p>
               <Link
-                  id="forgot-password"
-                  name="forgot-password"
-                  to={updatePathWithQueryParams(RESET_PAGE)}
-                  onClick={this.handleForgotPasswordLinkClickEvent}
+                  id="register_page"
+                  name="register_page"
+                  to={updatePathWithQueryParams(REGISTER_PAGE)}
+                  onClick={this.handleRegisterAccount}
                   style={{color:"dodgerblue",fontWeight:"bolder",marginLeft:"5px"}}
                 >
                   Register
