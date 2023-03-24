@@ -24,7 +24,7 @@ import {
 } from '../common-components/data/selectors';
 import EnterpriseSSO from '../common-components/EnterpriseSSO';
 import {
-  DEFAULT_STATE, INVALID_NAME_REGEX, LETTER_REGEX, NUMBER_REGEX, PENDING_STATE, REGISTER_PAGE, VALID_EMAIL_REGEX,
+  DEFAULT_STATE, INVALID_NAME_REGEX, LETTER_REGEX, NUMBER_REGEX, PENDING_STATE, REGISTER_PAGE, VALID_EMAIL_REGEX,LOGIN_PAGE
 } from '../data/constants';
 import {
   getAllPossibleQueryParams, getTpaHint, getTpaProvider, setCookie, setSurveyCookie,
@@ -44,7 +44,7 @@ import {
   windowScrollTo,
 } from '../data/utils';
 import {
-  COUNTRY_CODE_KEY, COUNTRY_DISPLAY_KEY, FORM_SUBMISSION_ERROR,LOGIN_PAGE
+  COUNTRY_CODE_KEY, COUNTRY_DISPLAY_KEY, FORM_SUBMISSION_ERROR
 } from './data/constants';
 import { registrationErrorSelector, validationsSelector } from './data/selectors';
 import { getSuggestionForInvalidEmail, validateCountryField, validateEmailAddress } from './data/utils';
@@ -597,9 +597,6 @@ const RegistrationPage = (props) => {
             />
             <div className="reg_link" style={{display:"flex",flexDirection:"row",alignItems:"baseline"}}>
               <p style={{fontSize:"13px",fontWeight:"bolder"}}>Already have an Account ? </p>
-              
-
-
                 <Link
                   id="login_page"
                   name="login_page"
@@ -607,12 +604,8 @@ const RegistrationPage = (props) => {
                   onClick={this.handleLoginAccount}
                   style={{color:"dodgerblue",fontWeight:"bolder",marginLeft:"5px"}}
                 >
-                  Register
-                </Link>
-
-
-
-                
+                  Sign In
+                </Link>  
             </div>
             <div>
                 <input className="inp-cbx" id="cbx" type="checkbox" style={{display:"none"}} />
