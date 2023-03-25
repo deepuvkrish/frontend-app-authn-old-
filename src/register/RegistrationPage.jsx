@@ -597,15 +597,7 @@ const RegistrationPage = (props) => {
             />
             <div className="reg_link" style={{display:"flex",flexDirection:"row",alignItems:"baseline"}}>
               <p style={{fontSize:"13px",fontWeight:"bolder"}}>Already have an Account ? </p>
-                <Link
-                  id="login_page"
-                  name="login_page"
-                  to={updatePathWithQueryParams(LOGIN_PAGE)}
-                  onClick={this.handleLoginAccount}
-                  style={{color:"dodgerblue",fontWeight:"bolder",marginLeft:"5px"}}
-                >
-                  Sign In
-                </Link>  
+                
             </div>
             <div>
                 <input className="inp-cbx" id="cbx" type="checkbox" style={{display:"none"}} />
@@ -641,7 +633,7 @@ const RegistrationPage = (props) => {
       return null;
     }
     return provider ? <EnterpriseSSO provider={provider} intl={intl} /> : renderForm();
-  }
+  } 
   return (
     renderForm()
   );
